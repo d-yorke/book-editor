@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ngStorage',
   ])
   .config(function ($locationProvider) {
     $locationProvider.hashPrefix('');
@@ -29,10 +30,24 @@ angular
       })
       .when('/authors', {
         templateUrl: 'views/authors.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+        controller: 'AuthorsCtrl',
+        controllerAs: 'authors'
       })
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+  .controller('appCtrl', ['$scope', '$localStorage', 'initialData', function ($scope, $localStorage, initialData) {
+    $scope.$storage = $localStorage;
+
+    $scope.initData = function () {
+      $scope.$storage.books = initialData.books;
+      $scope.$storage.authors = initialData.authors;
+    };
+
+    $scope.clearData = function () {
+      $localStorage.$reset();
+    };
+
+    $scope.initData();
+  }]);

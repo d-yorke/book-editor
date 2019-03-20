@@ -2,16 +2,13 @@
 
 /**
  * @ngdoc function
- * @name bookEditorApp.controller:BooksCtrl
+ * @name bookEditorApp.controller:AuthorsCtrl
  * @description
- * # BooksCtrl
+ * # AuthorsCtrl
  * Controller of the bookEditorApp
  */
 angular.module('bookEditorApp')
-  .controller('BooksCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('AuthorsCtrl', ['$scope', '$localStorage', function ($scope, $localStorage) {
+    $scope.$storage = $localStorage;
+    $scope.$storage.books = [{ name: 'kek', author: 'lel' }];
+  }]);
