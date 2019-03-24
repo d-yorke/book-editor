@@ -13,14 +13,14 @@ angular.module('bookEditorApp')
 
       var modalMap = {
         confirmationModal: {
-          template: '/views/templates/confirmation-modal.html'
+          template: 'views/templates/confirmation-modal.html'
         },
         editBookModal: {
-          template: '/views/templates/edit-book-modal.html',
+          template: 'views/templates/edit-book-modal.html',
           size: 'lg'
         },
         editAuthorModal: {
-          template: '/views/templates/edit-author-modal.html'
+          template: 'views/templates/edit-author-modal.html'
         }
       };
 
