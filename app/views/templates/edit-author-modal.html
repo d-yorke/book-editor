@@ -1,0 +1,44 @@
+<form name="authorForm" ng-submit="modalOptions.action()" novalidate>
+  <div class="modal-header">
+    <h5 class="modal-title">{{ modalOptions.title }}</h5>
+    <button type="button" class="close" aria-label="Close" ng-click="modalOptions.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input class="form-control" id="firstName" name="firstName"
+                 ng-required="validationRules.rules.authorForm.firstName.required"
+                 maxlength="{{ validationRules.rules.authorForm.firstName.maxlength }}"
+                 placeholder="Enter First Name" ng-model="selectedItem.firstName">
+          <div class="text-danger" ng-messages="authorForm.firstName.$error">
+            <div ng-repeat="(name, text) in validationRules.messages.authorForm.firstName" ng-message="{{name}}"
+                 ng-show="authorForm.firstName.$invalid && authorForm.firstName.$touched">
+              <small>{{ text }}</small>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input class="form-control" id="lastName" name="lastName"
+                 ng-required="validationRules.rules.authorForm.lastName.required"
+                 maxlength="{{ validationRules.rules.authorForm.lastName.maxlength }}"
+                 placeholder="Enter Last Name" ng-model="selectedItem.lastName">
+          <div class="text-danger" ng-messages="authorForm.lastName.$error">
+            <div ng-repeat="(name, text) in validationRules.messages.authorForm.lastName" ng-message="{{name}}"
+                 ng-show="authorForm.lastName.$invalid && authorForm.lastName.$touched">
+              <small>{{ text }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" ng-click="modalOptions.close()">Close</button>
+    <button class="btn btn-primary" ng-disabled="authorForm.$invalid">Save</button>
+  </div>
+</form>

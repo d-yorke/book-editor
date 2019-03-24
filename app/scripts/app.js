@@ -17,6 +17,9 @@ angular
     'ngSanitize',
     'ngTouch',
     'ngStorage',
+    'ngMessages',
+    'ui.bootstrap',
+    'ui.select2'
   ])
   .config(function ($locationProvider) {
     $locationProvider.hashPrefix('');
@@ -26,28 +29,17 @@ angular
       .when('/', {
         templateUrl: 'views/books.html',
         controller: 'BooksCtrl',
-        controllerAs: 'books'
+        reloadOnSearch: false
       })
       .when('/authors', {
         templateUrl: 'views/authors.html',
-        controller: 'AuthorsCtrl',
-        controllerAs: 'authors'
+        controller: 'AuthorsCtrl'
       })
       .otherwise({
         redirectTo: '/'
       });
   })
-  .controller('appCtrl', ['$scope', '$localStorage', 'initialData', function ($scope, $localStorage, initialData) {
-    $scope.$storage = $localStorage;
-
-    $scope.initData = function () {
-      $scope.$storage.books = initialData.books;
-      $scope.$storage.authors = initialData.authors;
-    };
-
-    $scope.clearData = function () {
-      $localStorage.$reset();
-    };
-
-    $scope.initData();
+  .controller('AppCtrl', ['$scope', '$location', '$route', 'localStorage', function ($scope, $location, $route, localStorage) {
+    $scope.reset = localStorage.initData;
+    $scope.clear = localStorage.clearData;
   }]);

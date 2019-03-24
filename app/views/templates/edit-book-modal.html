@@ -1,0 +1,128 @@
+<form name="bookForm" ng-submit="modalOptions.action()" novalidate>
+  <div class="modal-header">
+    <h5 class="modal-title">{{ modalOptions.title }}</h5>
+    <button type="button" class="close" aria-label="Close" ng-click="modalOptions.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="book-cover" title="{{ selectedItem.title }}"
+             style="background-image: url({{ selectedItem.image || './images/no-cover.jpg' }})"></div>
+        <input id="book-cover" class="d-none" type="file"
+               accept="{{ validationRules.rules.bookForm.image.types.join(',') }}"
+               max-size="{{ validationRules.rules.bookForm.image.maxSize }}"
+               book-image name="image" ng-model="selectedItem.image">
+        <div class="text-danger" ng-messages="bookForm.image.$error">
+          <div ng-repeat="(name, text) in validationRules.messages.bookForm.image" ng-message="{{name}}"
+               ng-show="bookForm.image.$invalid">
+            <small>{{ text }}</small>
+          </div>
+        </div>
+        <button type="button"
+                class="btn btn-outline-success"
+                onclick="document.getElementById('book-cover').click()">
+          {{ selectedItem.image ? 'Change Cover' : 'Select Cover' }}
+        </button>
+        <button type="button" ng-show="selectedItem.image"
+                class="btn btn-outline-danger" delete-image="image">
+          Delete Cover
+        </button>
+      </div>
+      <div class="col-md-8">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="{{ validationRules.rules.bookForm.title.type || 'text' }}"
+                 ng-required="validationRules.rules.bookForm.title.required"
+                 maxlength="{{ validationRules.rules.bookForm.title.maxlength }}"
+                 ng-model="selectedItem.title"
+                 class="form-control" id="title" name="title" placeholder="Enter Title">
+          <div class="text-danger" ng-messages="bookForm.title.$error">
+            <div ng-repeat="(name, text) in validationRules.messages.bookForm.title" ng-message="{{name}}"
+                 ng-show="bookForm.title.$invalid && bookForm.title.$touched">
+              <small>{{ text }}</small>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Authors</label>
+          <select ui-select2 multiple="multiple" ng-model="selectedItem.authors"
+                  ng-required="validationRules.rules.bookForm.authors.required"
+                  style="width: 100%" data-placeholder="Pick an Author" name="authors"
+                  ng-options="author.id as (author.firstName + ' ' + author.lastName) for author in authors">
+          </select>
+          <div class="text-danger" ng-messages="bookForm.authors.$error">
+            <div ng-repeat="(name, text) in validationRules.messages.bookForm.authors" ng-message="{{name}}"
+                 ng-show="bookForm.authors.$invalid && bookForm.authors.$dirty">
+              <small>{{ text }}</small>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="publisher">Publisher</label>
+          <input type="{{ validationRules.rules.bookForm.publisher.type || 'text' }}"
+                 maxlength="{{ validationRules.rules.bookForm.publisher.maxlength }}"
+                 ng-model="selectedItem.publisher"
+                 class="form-control" id="publisher" name="publisher" placeholder="Enter Publisher Name">
+          <div class="text-danger" ng-messages="bookForm.publisher.$error">
+            <div ng-repeat="(name, text) in validationRules.messages.bookForm.publisher" ng-message="{{name}}"
+                 ng-show="bookForm.publisher.$invalid && bookForm.publisher.$touched">
+              <small>{{ text }}</small>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="publicationYear">Publication Year</label>
+          <input type="{{ validationRules.rules.bookForm.publicationYear.type || 'text' }}"
+                 min="{{ validationRules.rules.bookForm.publicationYear.min }}"
+                 ng-model="selectedItem.publicationYear"
+                 class="form-control" id="publicationYear" name="publicationYear" placeholder="Enter Publication Year">
+          <div class="text-danger" ng-messages="bookForm.publicationYear.$error">
+            <div ng-repeat="(name, text) in validationRules.messages.bookForm.publicationYear" ng-message="{{name}}"
+                 ng-show="bookForm.publicationYear.$invalid && bookForm.publicationYear.$touched">
+              <small>{{ text }}</small>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="releaseDate">Release Date</label>
+          <input ng-model="selectedItem.releaseDate" ng-click="isOpen = !isOpen"
+                 class="form-control" id="releaseDate" readonly name="releaseDate"
+                 uib-datepicker-popup="dd/MM/yyyy" is-open="isOpen"
+                 datepicker-options="validationRules.rules.bookForm.releaseDate">
+        </div>
+        <div class="form-group">
+          <label for="pagesCount">Pages Count</label>
+          <input type="{{ validationRules.rules.bookForm.pagesCount.type || 'text' }}"
+                 ng-required="validationRules.rules.bookForm.pagesCount.required"
+                 min="{{ validationRules.rules.bookForm.pagesCount.min }}"
+                 max="{{ validationRules.rules.bookForm.pagesCount.max }}"
+                 class="form-control" id="pagesCount" name="pagesCount"
+                 placeholder="Enter Pages Count" ng-model="selectedItem.pagesCount">
+          <div class="text-danger" ng-messages="bookForm.pagesCount.$error">
+            <div ng-repeat="(name, text) in validationRules.messages.bookForm.pagesCount" ng-message="{{name}}"
+                 ng-show="bookForm.pagesCount.$invalid && bookForm.pagesCount.$touched">
+              <small>{{ text }}</small>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="isbn">ISBN</label>
+          <input class="form-control" id="isbn" name="isbn" checkisbn
+                 placeholder="Enter ISBN" ng-model="selectedItem.isbn">
+          <div class="text-danger" ng-messages="bookForm.isbn.$error">
+            <div ng-repeat="(name, text) in validationRules.messages.bookForm.isbn" ng-message="{{name}}"
+                 ng-show="bookForm.isbn.$invalid && bookForm.isbn.$touched">
+              <small>{{ text }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" ng-click="modalOptions.close()">Close</button>
+    <button class="btn btn-primary" ng-disabled="bookForm.$invalid">Save</button>
+  </div>
+</form>

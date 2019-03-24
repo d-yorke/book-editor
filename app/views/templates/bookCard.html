@@ -1,0 +1,23 @@
+<div class="card mb-3">
+  <div class="row no-gutters">
+    <a href="{{ '#/books/' + book.id }}" class="col-md-4 book-cover" title="{{ book.title }}"
+       style="background-image: url({{ book.image || './images/no-cover.jpg' }})"></a>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h6 class="card-title" title="{{ book.title }}">
+          <a href="{{ '#/books/' + book.id }}">{{ book.title }}</a>
+        </h6>
+        <div class="card-text">
+          <div ng-repeat="author in book.authors">
+            <small class="text-muted">{{ author.firstName + ' ' + author.lastName }}</small>
+          </div>
+          <small class="text-muted">{{ book.publicationYear }}</small>
+        </div>
+      </div>
+      <div class="card-buttons">
+        <button class="btn btn-outline-warning" ng-click="openModal('editItem', book.id)">Edit</button>
+        <button class="btn btn-outline-danger" ng-click="openModal('deleteItem', book.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

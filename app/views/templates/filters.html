@@ -1,0 +1,33 @@
+<div ng-show="filters.totalItems > 0" class="filters" ng-controller="FiltersCtrl">
+  <ul uib-pagination total-items="filters.totalItems" class="filters-item" items-per-page="filters.itemsPerPage"
+      previous-text="<" next-text=">" ng-model="filters.currentPage" ng-change="updatePage()"></ul>
+
+  <div class="dropdown filters-item">
+    <button class="btn btn-secondary dropdown-toggle" role="button"
+       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      {{ filters.itemsPerPage }} Items per page
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <a class="dropdown-item" href="javascript:void(0);" ng-click="updatePerPage(6)">6</a>
+      <a class="dropdown-item" href="javascript:void(0);" ng-click="updatePerPage(12)">12</a>
+      <a class="dropdown-item" href="javascript:void(0);" ng-click="updatePerPage(24)">24</a>
+    </div>
+  </div>
+
+  <div class="dropdown filters-item">
+    <a class="btn btn-secondary dropdown-toggle text-capitalize" href="javascript:void(0);" role="button"
+       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Sort By {{ filters.sort + ' ' + filters.sortDirection }}
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <a ng-repeat-start="prop in filters.sortProps"
+         class="dropdown-item" href="javascript:void(0);"
+         ng-click="updateSorting(prop.prop, 'asc')">{{ prop.name }} asc</a>
+      <a ng-repeat-end class="dropdown-item" href="javascript:void(0);"
+         ng-click="updateSorting(prop.prop, 'desc')">{{ prop.name }} desc</a>
+    </div>
+  </div>
+  <p class="filters-item">Items count - {{ filters.totalItems }}</p>
+
+  <button ng-click="filters.action()" class="btn btn-success float-right">New</button>
+</div>
