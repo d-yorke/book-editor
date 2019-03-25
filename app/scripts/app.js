@@ -29,17 +29,25 @@ angular
       .when('/', {
         templateUrl: 'views/books.html',
         controller: 'BooksCtrl',
-        reloadOnSearch: false
+        reloadOnSearch: false,
+        title: 'Books'
       })
       .when('/authors', {
         templateUrl: 'views/authors.html',
-        controller: 'AuthorsCtrl'
+        controller: 'AuthorsCtrl',
+        reloadOnSearch: false,
+        title: 'Authors'
       })
       .otherwise({
         redirectTo: '/'
       });
   })
-  .controller('AppCtrl', ['$scope', '$location', '$route', 'localStorage', function ($scope, $location, $route, localStorage) {
+  .controller('AppCtrl', ['$rootScope', '$scope', '$route', 'localStorage',
+    function ($rootScope, $scope, $route, localStorage) {
     $scope.reset = localStorage.initData;
     $scope.clear = localStorage.clearData;
+
+    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+      $scope.currentPage = current.$$route.title;
+    });
   }]);

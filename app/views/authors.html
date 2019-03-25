@@ -3,14 +3,14 @@
 </div>
 <div class="row">
   <div class="col-sm-6 col-md-6 col-lg-4" ng-repeat="author in authorList">
-    <div class="card mb-3">
+    <div class="card author-card mb-3">
       <div class="card-body">
         <h5 class="card-title" title="{{ author.firstName + ' ' + author.lastName }}">
           {{ author.firstName + ' ' + author.lastName }}
         </h5>
         <div class="card-buttons">
-          <button class="btn btn-outline-warning" ng-click="openModal('editItem', author.id)">Edit</button>
-          <button class="btn btn-outline-danger" ng-click="openModal('deleteItem', author.id)">Delete</button>
+          <button class="btn btn-sm btn-outline-warning" ng-click="openModal('editItem', author.id)">Edit</button>
+          <button class="btn btn-sm btn-outline-danger" ng-click="openModal('deleteItem', author.id)">Delete</button>
         </div>
       </div>
     </div>

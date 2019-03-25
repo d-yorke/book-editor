@@ -20,15 +20,17 @@
             <small>{{ text }}</small>
           </div>
         </div>
-        <button type="button"
-                class="btn btn-outline-success"
-                onclick="document.getElementById('book-cover').click()">
-          {{ selectedItem.image ? 'Change Cover' : 'Select Cover' }}
-        </button>
-        <button type="button" ng-show="selectedItem.image"
-                class="btn btn-outline-danger" delete-image="image">
-          Delete Cover
-        </button>
+        <div class="my-2 text-center">
+          <button type="button"
+                  class="btn btn-sm btn-outline-success"
+                  onclick="document.getElementById('book-cover').click()">
+            {{ selectedItem.image ? 'Change Cover' : 'Select Cover' }}
+          </button>
+          <button type="button" ng-show="selectedItem.image"
+                  class="btn btn-sm btn-outline-danger" delete-image="image">
+            Delete Cover
+          </button>
+        </div>
       </div>
       <div class="col-md-8">
         <div class="form-group">

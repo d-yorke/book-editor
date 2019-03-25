@@ -1,5 +1,5 @@
-.card {
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+.card, .select2-search-choice {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1) !important;
 }
 
 .book-cover {
@@ -7,19 +7,21 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: top center;
+  border-radius: 0.25rem 0 0 0.25rem;
 }
 
-.filters-item {
-  display: inline-flex;
+.filters-pagination {
+  padding: 5px 0;
 }
 
-.image-upload {
-  display: inline-block;
-  height: 225px;
-  text-align: center;
-  line-height: 225px;
-  color: #fff;
-  cursor: pointer;
+.filters-navbar {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.filters-total {
+  height: 38px;
+  line-height: 38px;
 }
 
 .fa-svg-icon svg {
@@ -31,4 +33,62 @@
   color: #212529;
   background-color: #fff;
   border-color: #efefef;
+}
+.card-title, .card-text small {
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.card-body {
+  position: relative;
+  height: 225px;
+}
+
+.card-buttons {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.author-card .card-body {
+  height: 125px;
+}
+
+.select2-choices, .select2-search-choice {
+  border: 1px solid #ced4da !important;
+  border-radius: 0.25rem;
+  background: none !important;
+}
+
+.select2-search-choice {
+  height: 30px;
+  line-height: 20px !important;
+  margin: 5px 3px 5px 5px !important;
+  padding-left: 20px !important;
+}
+
+.select2-search-choice-close {
+  background: none !important;
+}
+
+.select2-search-choice-close:before, .select2-search-choice-close:after {
+  position: absolute;
+  left: 6px;
+  top: 4px;
+  content: ' ';
+  height: 12px;
+  width: 2px;
+  background-color: #495057;
+}
+.select2-search-choice-close:before {
+  transform: rotate(45deg);
+}
+.select2-search-choice-close:after {
+  transform: rotate(-45deg);
+}
+
+#releaseDate[readonly] {
+  background-color: #fff;
 }

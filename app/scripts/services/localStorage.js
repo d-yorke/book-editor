@@ -63,8 +63,8 @@ angular.module('bookEditorApp')
       };
 
       this.addItem = function (newItem, array) {
-        if (!$storage.books) {
-          $storage.books = [];
+        if (!$storage[array]) {
+          $storage[array] = [];
         }
 
         if (array === 'books') {
