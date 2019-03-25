@@ -8,8 +8,7 @@
   <div class="collapse navbar-collapse" id="navbarFilters">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item filters-pagination" ng-show="filters.totalItems > 0">
-        <ul uib-pagination total-items="filters.totalItems" items-per-page="filters.itemsPerPage"
-            class="pagination-sm"
+        <ul uib-pagination total-items="filters.totalItems" items-per-page="filters.itemsPerPage" class="pagination-sm"
             previous-text="<" next-text=">" ng-model="filters.currentPage" ng-change="updatePage()"></ul>
       </li>
       <li class="nav-item dropdown" ng-show="filters.totalItems > 0">

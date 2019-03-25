@@ -10,10 +10,13 @@
 angular.module('bookEditorApp')
   .controller('AuthorsCtrl', ['$scope', '$location', 'localStorage', 'modal', 'validationRules',
     function ($scope, $location, localStorage, modal, validationRules) {
+      $scope.validationRules = validationRules;
+
       $scope.authorList = [];
       $scope.queryProps = $location.search();
       $scope.selectedItem = {};
-      $scope.validationRules = validationRules;
+      $scope.modalOptions = {};
+
       $scope.filters = {
         totalItems: 0,
         currentPage: Number($scope.queryProps.page) || 1,

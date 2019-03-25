@@ -10,13 +10,14 @@
 angular.module('bookEditorApp')
   .controller('BooksCtrl', ['$scope', '$location', 'localStorage', 'modal', 'validationRules',
     function ($scope, $location, localStorage, modal, validationRules) {
+      $scope.validationRules = validationRules;
+
       $scope.bookList = [];
       $scope.queryProps = $location.search();
       $scope.selectedItem = {};
       $scope.modalOptions = {};
-      $scope.isOpen = false;
-      $scope.authors = localStorage.getList({ itemsPerPage: 100 }, 'authors').list;
-      $scope.validationRules = validationRules;
+
+      $scope.authorList = localStorage.getList({ itemsPerPage: 100 }, 'authors').list;
 
       $scope.filters = {
         totalItems: 0,

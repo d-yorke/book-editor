@@ -65,7 +65,8 @@ angular.module('bookEditorApp')
         },
         releaseDate: {
           minDate: new Date(1800, 0, 1),
-          initDate: new Date()
+          initDate: new Date(),
+          isOpen: false
         },
         isbn: {},
         image: {

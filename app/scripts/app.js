@@ -10,14 +10,9 @@
  */
 angular
   .module('bookEditorApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
     'ngRoute',
-    'ngSanitize',
-    'ngTouch',
-    'ngStorage',
     'ngMessages',
+    'ngStorage',
     'ui.bootstrap',
     'ui.select2'
   ])
@@ -47,7 +42,7 @@ angular
     $scope.reset = localStorage.initData;
     $scope.clear = localStorage.clearData;
 
-    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+    $rootScope.$on('$routeChangeSuccess', function (event, current) {
       $scope.currentPage = current.$$route.title;
     });
   }]);
